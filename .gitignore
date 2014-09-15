@@ -12,7 +12,7 @@ lib_managed/
 src_managed/
 project/boot/
 project/plugins/project/
-
+lectures/
 # Scala-IDE specific
 .scala_dependencies
 .worksheet

@@ -3,6 +3,7 @@ package example
 import common._
 
 object Lists {
+
   /**
    * This method computes the sum of all elements in the list xs. There are
    * multiple techniques that can be used for implementing this method, and
@@ -23,7 +24,10 @@ object Lists {
    * @param xs A list of natural numbers
    * @return The sum of all elements in `xs`
    */
-  def sum(xs: List[Int]): Int = 0
+  def sum(xs: List[Int]): Int = {
+    def loop(s: Int, l: List[Int]): Int = if (l.isEmpty) s else loop(s = s + l.head, l.tail)
+    loop(0, xs)
+  }
 
   /**
    * This method returns the largest element in a list of integers. If the
@@ -38,5 +42,9 @@ object Lists {
    * @return The largest element in `xs`
    * @throws java.util.NoSuchElementException if `xs` is an empty list
    */
-  def max(xs: List[Int]): Int = 0
+  def max(xs: List[Int]): Int = {
+    if (xs.isEmpty) throw new java.util.NoSuchElementException()
+    def loop(m: Int, l: List[Int]): Int = if (l.isEmpty) m else loop(if (m > l.head) m else l.head, l.tail)
+    loop(0, xs)
+  }
 }
