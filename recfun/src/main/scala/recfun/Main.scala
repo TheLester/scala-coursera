@@ -18,7 +18,7 @@ object Main {
   else pascal(c - 1, r - 1) + pascal(c, r - 1)
 
   /**
-   * Exercise 2 
+   * Exercise 2
    * Maybe not the best solution) DANGER! Code smell :)
    */
   def balance(chars: List[Char]): Boolean = {
@@ -32,5 +32,10 @@ object Main {
   /**
    * Exercise 3
    */
-  def countChange(money: Int, coins: List[Int]): Int = ???
+  def countChange(money: Int, coins: List[Int]): Int = if (money < 0)
+    0
+  else if (coins.isEmpty)
+    if (money == 0) 1 else 0
+  else
+    countChange(money, coins.tail) + countChange(money - coins.head, coins)
 }
