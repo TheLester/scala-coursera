@@ -77,6 +77,7 @@ class FunSetSuite extends FunSuite {
     val s1 = singletonSet(1)
     val s2 = singletonSet(2)
     val s3 = singletonSet(3)
+    val s_untd = union(s1, s2)
   }
 
   /**
@@ -86,7 +87,7 @@ class FunSetSuite extends FunSuite {
    * Once you finish your implementation of "singletonSet", exchange the
    * function "ignore" by "test".
    */
-  ignore("singletonSet(1) contains 1") {
+  test("singletonSet(1) contains 1") {
     
     /**
      * We create a new instance of the "TestSets" trait, this gives us access
@@ -101,12 +102,26 @@ class FunSetSuite extends FunSuite {
     }
   }
 
-  ignore("union contains all elements") {
+  test("union contains all elements") {
     new TestSets {
       val s = union(s1, s2)
       assert(contains(s, 1), "Union 1")
       assert(contains(s, 2), "Union 2")
       assert(!contains(s, 3), "Union 3")
+    }
+  }
+  test("intersect contains common elements of s_untd(1,2) and s1(1)") {
+    new TestSets {
+      val s = intersect(s_untd, s1)
+      assert(contains(s, 1), "Intersect 1")
+      assert(!contains(s, 2), "Intersect 2")
+    }
+  }
+    test("diff contains elements of s that are not in s_untd") {
+    new TestSets {
+      val s = diff(s_untd, s1)
+      assert(!contains(s, 1), "Diff 1")
+      assert(contains(s, 2), "Diff 2")
     }
   }
 }
